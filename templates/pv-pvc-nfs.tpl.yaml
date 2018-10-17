@@ -1,0 +1,29 @@
+# This .yaml file is genrated by Terraform during apply action
+# Manual changes to this .yaml file are overwritten by Terraform 
+# Please see .yaml.tpl file for tamplate definition 
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    # FIXED: Use internal DNS name
+    server: nfs-server.default.svc.cluster.local
+    path: \"/\"
+
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: nfs
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: \"\"
+  resources:
+    requests:
+      storage: 5Gi

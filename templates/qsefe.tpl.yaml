@@ -1,0 +1,34 @@
+# This .yaml file is genrated by Terraform during apply action
+# Manual changes to this .yaml file are overwritten by Terraform 
+# Please see .yaml.tpl file for tamplate definition 
+devMode:
+ enabled: true
+edge-auth:
+ secrets:
+   idpConfigs:
+     - discoveryUrl: \"${discoveryUrl}\"
+       clientId: \"${clientId}\"
+       clientSecret: \"${clientSecret}\"
+       realm: \"${realm}\"
+       hostname: \"${hostname}\"
+       claimsMapping:
+         client_id: [ \"client_id\", \"azp\" ]
+         groups: \"/https:~1~1qlik.com~1groups\"
+         sub: [\"/https:~1~1qlik.com~1sub\", \"sub\"]
+mira:
+  rbac:
+    create: true
+  serviceAccount:
+    create: true
+elastic-infra:
+ traefik:
+   rbac:
+     enabled: true
+ nginx-ingress:
+   rbac:
+     create: true
+engine:
+  persistence:
+    enabled: true
+    accessMode: ReadWriteMany
+    existingClaim: nfs

@@ -1,0 +1,17 @@
+# This .yaml file is genrated by Terraform during apply action
+# Manual changes to this .yaml file are overwritten by Terraform 
+# Please see .yaml.tpl file for tamplate definition 
+apiVersion: v1
+kind: Service
+metadata:
+  name: nfs-server
+spec:
+  ports:
+    - name: nfs
+      port: 2049
+    - name: mountd
+      port: 20048
+    - name: rpcbind
+      port: 111
+  selector:
+    role: nfs-server
